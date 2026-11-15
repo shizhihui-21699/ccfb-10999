@@ -1,0 +1,20 @@
+import { writeFileSync } from 'node:fs';
+import { chromium } from 'playwright';
+import { createApp } from '../../server/src/index.ts';
+import { botActions } from './helpers.ts';
+
+const server = createApp().listen(8794, '127.0.0.1');
+await new Promise((r) => server.once('listening', r));
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage();
+await page.goto('http://127.0.0.1:8794/');
+await page.waitForTimeout(1200);
+await botActions(page);
+const sid = await page.evaluate(() => window.BotGuard!.getSessionId());
+await page.evaluate(() => window.__bgFlush());
+await page.waitForTimeout(500);
+const body = await fetch(`http://127.0.0.1:8794/api/results/${sid}`).then((r) => r.json());
+writeFileSync('tests/results/sample-report.json', JSON.stringify(body.reports.at(-1).report, null, 2));
+await browser.close();
+server.close();
+console.log('sample written');

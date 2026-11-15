@@ -1,0 +1,278 @@
+{
+  "v": 1,
+  "sessionId": "383eb9b8-83fd-4f38-a64c-5fa19f0e81f8",
+  "pageUrl": "http://127.0.0.1:8794/",
+  "ts": 2379,
+  "seq": 2,
+  "env": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+    "platform": "macOS",
+    "language": "en-US",
+    "languages": [
+      "en-US"
+    ],
+    "cores": 14,
+    "deviceMemory": 32,
+    "dpr": 1,
+    "screen": {
+      "w": 1280,
+      "h": 720,
+      "availW": 1280,
+      "availH": 720,
+      "colorDepth": 24
+    },
+    "viewport": {
+      "w": 1280,
+      "h": 720
+    },
+    "timezone": "Asia/Shanghai",
+    "timezoneOffset": -480,
+    "touch": {
+      "ontouchstart": false,
+      "maxTouchPoints": 0,
+      "coarsePointer": false
+    },
+    "webgl": {
+      "vendor": "Google Inc. (Google)",
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "debugInfo": true
+    },
+    "canvas": {
+      "hash": "bdfe7872",
+      "blocked": false
+    },
+    "audio": {
+      "fingerprint": 1873217314,
+      "supported": true
+    },
+    "fonts": {
+      "count": 8
+    },
+    "permissions": {
+      "notifications": "prompt",
+      "geolocation": "prompt",
+      "camera": "prompt",
+      "microphone": "prompt",
+      "persistent-storage": "prompt"
+    },
+    "plugins": {
+      "length": 0,
+      "names": []
+    },
+    "mediaDevices": 1,
+    "webdriver": true,
+    "cdcVars": [],
+    "tamperedNatives": [],
+    "headlessFlags": [
+      "ua-headless",
+      "webdriver-true",
+      "swiftshader-gl",
+      "missing-chrome-object",
+      "outer-inner-diff-zero",
+      "plugins-empty",
+      "notification-denied-default"
+    ],
+    "automationGlobals": [],
+    "chrome": {
+      "present": false,
+      "runtime": false,
+      "app": false,
+      "csi": false,
+      "loadTimes": false
+    },
+    "notification": {
+      "permission": "denied",
+      "supported": true
+    },
+    "iframe": {
+      "outerInnerDiff": 0,
+      "screenEqualsViewport": true
+    },
+    "cssProbes": [
+      "chrome-webkit-css-hack"
+    ],
+    "perf": {
+      "domContentLoaded": 16,
+      "loadEvent": 16,
+      "ttfb": 3
+    }
+  },
+  "behavior": {
+    "mouse": {
+      "count": 2,
+      "untrustedRatio": 0,
+      "stationaryRatio": 0,
+      "straightLineRatio": 0,
+      "intervalCV": 0,
+      "intervalMean": 267,
+      "intervalStd": 0,
+      "speedMean": 0.018726591760299626,
+      "speedCV": 0,
+      "angleMean": 0,
+      "jerkStd": 0,
+      "samples": [
+        [
+          1592,
+          360,
+          515,
+          0,
+          0,
+          359,
+          true
+        ],
+        [
+          1859,
+          360,
+          510,
+          0,
+          -8,
+          -178,
+          true
+        ]
+      ]
+    },
+    "click": {
+      "count": 6,
+      "untrustedRatio": 0,
+      "duplicateRatio": 0.4,
+      "samples": [
+        [
+          1545,
+          360,
+          156,
+          0,
+          1,
+          true
+        ],
+        [
+          1592,
+          360,
+          515,
+          0,
+          1,
+          true
+        ],
+        [
+          1626,
+          368,
+          688,
+          0,
+          1,
+          true
+        ],
+        [
+          1626,
+          368,
+          688,
+          0,
+          2,
+          true
+        ],
+        [
+          1626,
+          368,
+          688,
+          0,
+          3,
+          true
+        ],
+        [
+          1859,
+          360,
+          510,
+          0,
+          1,
+          true
+        ]
+      ]
+    },
+    "keyboard": {
+      "count": 0,
+      "untrustedRatio": 0,
+      "intervalMean": 0,
+      "intervalStd": 0,
+      "intervalCV": 0,
+      "dwellMean": 0,
+      "samples": []
+    },
+    "scroll": {
+      "count": 1,
+      "untrustedRatio": 0,
+      "uniformDeltaRatio": 0,
+      "samples": [
+        [
+          1640,
+          0,
+          1000,
+          true
+        ]
+      ]
+    },
+    "touch": {
+      "count": 0,
+      "samples": []
+    },
+    "focus": [
+      {
+        "t": 1545,
+        "type": "focus",
+        "hidden": false,
+        "isTrusted": true
+      },
+      {
+        "t": 1554,
+        "type": "blur",
+        "hidden": false,
+        "isTrusted": true
+      },
+      {
+        "t": 1554,
+        "type": "focus",
+        "hidden": false,
+        "isTrusted": true
+      },
+      {
+        "t": 1556,
+        "type": "blur",
+        "hidden": false,
+        "isTrusted": true
+      },
+      {
+        "t": 1556,
+        "type": "focus",
+        "hidden": false,
+        "isTrusted": true
+      },
+      {
+        "t": 1592,
+        "type": "blur",
+        "hidden": false,
+        "isTrusted": true
+      },
+      {
+        "t": 1592,
+        "type": "focus",
+        "hidden": false,
+        "isTrusted": true
+      },
+      {
+        "t": 1625,
+        "type": "blur",
+        "hidden": false,
+        "isTrusted": true
+      },
+      {
+        "t": 1859,
+        "type": "focus",
+        "hidden": false,
+        "isTrusted": true
+      }
+    ],
+    "hiddenTime": 0,
+    "sessionDuration": 2363
+  },
+  "extra": {
+    "campaign": "summer-sale-2026",
+    "page": "harness"
+  }
+}

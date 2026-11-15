@@ -1,0 +1,1862 @@
+[
+  {
+    "scenario": "S1",
+    "label": "原生 headless + 标准脚本",
+    "group": "bot",
+    "result": {
+      "sessionId": "da37d649-42a1-4a63-93dd-b638c0378fc7",
+      "score": 45,
+      "verdict": "bot",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": 68,
+          "capped": 45,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_UA_STRING",
+              "category": "headless",
+              "severity": "high",
+              "weight": 22,
+              "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+              "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+              "expected": "常规 Chrome UA 不含 Headless 字样"
+            },
+            {
+              "id": "HEADLESS_WEBDRIVER",
+              "category": "headless",
+              "severity": "high",
+              "weight": 14,
+              "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+              "observed": true,
+              "expected": "普通用户浏览器为 false/undefined"
+            },
+            {
+              "id": "HEADLESS_SWIFTSHADER",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 10,
+              "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+              "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+              "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+            },
+            {
+              "id": "HEADLESS_MISSING_CHROME",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 8,
+              "reason": "Chromium 系 UA 却没有 window.chrome 对象(新版无头模式特征)",
+              "observed": {
+                "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/",
+                "hasWindowChrome": false
+              },
+              "expected": "桌面 Chrome 存在 window.chrome"
+            },
+            {
+              "id": "HEADLESS_OUTER_INNER_ZERO",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 6,
+              "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+              "observed": 0,
+              "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+            },
+            {
+              "id": "HEADLESS_NOTIF_DENIED",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+              "observed": "denied",
+              "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+            },
+            {
+              "id": "HEADLESS_PLUGINS_EMPTY",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "桌面 Chromium 的 navigator.plugins 为空",
+              "observed": [],
+              "expected": "桌面 Chrome 至少含 PDF Viewer 等内置插件"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": 0,
+          "capped": 0,
+          "cap": 30,
+          "evidence": []
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "HEADLESS_UA_STRING",
+          "category": "headless",
+          "severity": "high",
+          "weight": 22,
+          "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+          "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+          "expected": "常规 Chrome UA 不含 Headless 字样"
+        },
+        {
+          "id": "HEADLESS_WEBDRIVER",
+          "category": "headless",
+          "severity": "high",
+          "weight": 14,
+          "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+          "observed": true,
+          "expected": "普通用户浏览器为 false/undefined"
+        },
+        {
+          "id": "HEADLESS_SWIFTSHADER",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 10,
+          "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+          "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+        },
+        {
+          "id": "HEADLESS_MISSING_CHROME",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 8,
+          "reason": "Chromium 系 UA 却没有 window.chrome 对象(新版无头模式特征)",
+          "observed": {
+            "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/",
+            "hasWindowChrome": false
+          },
+          "expected": "桌面 Chrome 存在 window.chrome"
+        },
+        {
+          "id": "HEADLESS_OUTER_INNER_ZERO",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 6,
+          "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+          "observed": 0,
+          "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+        },
+        {
+          "id": "HEADLESS_NOTIF_DENIED",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+          "observed": "denied",
+          "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+        },
+        {
+          "id": "HEADLESS_PLUGINS_EMPTY",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "桌面 Chromium 的 navigator.plugins 为空",
+          "observed": [],
+          "expected": "桌面 Chrome 至少含 PDF Viewer 等内置插件"
+        }
+      ],
+      "humanSignals": [],
+      "dataQuality": {
+        "mouseSamples": 2,
+        "keySamples": 0,
+        "clickCount": 6,
+        "scrollCount": 1,
+        "behaviorInsufficient": true,
+        "envComplete": true
+      },
+      "summary": [
+        "硬判定:2 条高置信度取证信号同时出现,直接判 bot(常规阈值 60)",
+        "User-Agent 中直接包含 HeadlessChrome 标识(+22)",
+        "navigator.webdriver === true,浏览器正被 WebDriver 协议控制(+14)",
+        "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征(+10)"
+      ],
+      "scoredAt": "2026-11-15T17:41:52.155Z"
+    }
+  },
+  {
+    "scenario": "S2",
+    "label": "headless + stealth 补丁",
+    "group": "bot",
+    "result": {
+      "sessionId": "f6855a43-8224-4a71-8029-77f3e9adde31",
+      "score": 77,
+      "verdict": "bot",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": 42,
+          "capped": 42,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_UA_STRING",
+              "category": "headless",
+              "severity": "high",
+              "weight": 22,
+              "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+              "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+              "expected": "常规 Chrome UA 不含 Headless 字样"
+            },
+            {
+              "id": "HEADLESS_SWIFTSHADER",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 10,
+              "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+              "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+              "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+            },
+            {
+              "id": "HEADLESS_OUTER_INNER_ZERO",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 6,
+              "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+              "observed": 0,
+              "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+            },
+            {
+              "id": "HEADLESS_NOTIF_DENIED",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+              "observed": "denied",
+              "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": 31,
+          "capped": 30,
+          "cap": 30,
+          "evidence": [
+            {
+              "id": "AUTO_GLOBALS_LEAK",
+              "category": "automation",
+              "severity": "high",
+              "weight": 18,
+              "reason": "全局作用域存在自动化框架注入变量(puppeteer/playwright/selenium 等)",
+              "observed": [
+                "__playwright_stealth__"
+              ],
+              "expected": "window 上无自动化框架变量"
+            },
+            {
+              "id": "AUTO_NATIVE_TAMPERED",
+              "category": "automation",
+              "severity": "high",
+              "weight": 9,
+              "reason": "浏览器核心原生函数的 toString 不含 [native code],已被脚本 hook/替换",
+              "observed": [
+                "navigator.permissions.query"
+              ],
+              "expected": "原生函数源码应为 function xxx() { [native code] }"
+            },
+            {
+              "id": "AUTO_WEBDRIVER_GETTER_PATCH",
+              "category": "automation",
+              "severity": "low",
+              "weight": 4,
+              "reason": "仅 navigator.webdriver 的 getter 被替换为非原生函数(轻度反检测补丁)",
+              "observed": [
+                "navigator.webdriver"
+              ],
+              "expected": "未做补丁时该 getter 为原生"
+            }
+          ]
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 5,
+          "capped": 5,
+          "cap": 20,
+          "evidence": [
+            {
+              "id": "CONTRA_WEBDRIVER_HIDDEN_BADLY",
+              "category": "contradiction",
+              "severity": "low",
+              "weight": 5,
+              "reason": "webdriver 被改成 false,但 Navigator.prototype 上的 getter 已非原生(补丁式伪装痕迹;隐私工具也可能触发,仅作佐证)",
+              "observed": [
+                "navigator.webdriver"
+              ],
+              "expected": "无补丁时 webdriver getter 为原生"
+            }
+          ]
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "HEADLESS_UA_STRING",
+          "category": "headless",
+          "severity": "high",
+          "weight": 22,
+          "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+          "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+          "expected": "常规 Chrome UA 不含 Headless 字样"
+        },
+        {
+          "id": "AUTO_GLOBALS_LEAK",
+          "category": "automation",
+          "severity": "high",
+          "weight": 18,
+          "reason": "全局作用域存在自动化框架注入变量(puppeteer/playwright/selenium 等)",
+          "observed": [
+            "__playwright_stealth__"
+          ],
+          "expected": "window 上无自动化框架变量"
+        },
+        {
+          "id": "HEADLESS_SWIFTSHADER",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 10,
+          "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+          "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+        },
+        {
+          "id": "AUTO_NATIVE_TAMPERED",
+          "category": "automation",
+          "severity": "high",
+          "weight": 9,
+          "reason": "浏览器核心原生函数的 toString 不含 [native code],已被脚本 hook/替换",
+          "observed": [
+            "navigator.permissions.query"
+          ],
+          "expected": "原生函数源码应为 function xxx() { [native code] }"
+        },
+        {
+          "id": "HEADLESS_OUTER_INNER_ZERO",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 6,
+          "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+          "observed": 0,
+          "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+        },
+        {
+          "id": "CONTRA_WEBDRIVER_HIDDEN_BADLY",
+          "category": "contradiction",
+          "severity": "low",
+          "weight": 5,
+          "reason": "webdriver 被改成 false,但 Navigator.prototype 上的 getter 已非原生(补丁式伪装痕迹;隐私工具也可能触发,仅作佐证)",
+          "observed": [
+            "navigator.webdriver"
+          ],
+          "expected": "无补丁时 webdriver getter 为原生"
+        },
+        {
+          "id": "HEADLESS_NOTIF_DENIED",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+          "observed": "denied",
+          "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+        },
+        {
+          "id": "AUTO_WEBDRIVER_GETTER_PATCH",
+          "category": "automation",
+          "severity": "low",
+          "weight": 4,
+          "reason": "仅 navigator.webdriver 的 getter 被替换为非原生函数(轻度反检测补丁)",
+          "observed": [
+            "navigator.webdriver"
+          ],
+          "expected": "未做补丁时该 getter 为原生"
+        }
+      ],
+      "humanSignals": [],
+      "dataQuality": {
+        "mouseSamples": 2,
+        "keySamples": 0,
+        "clickCount": 6,
+        "scrollCount": 1,
+        "behaviorInsufficient": true,
+        "envComplete": true
+      },
+      "summary": [
+        "User-Agent 中直接包含 HeadlessChrome 标识(+22)",
+        "全局作用域存在自动化框架注入变量(puppeteer/playwright/selenium 等)(+18)",
+        "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征(+10)"
+      ],
+      "scoredAt": "2026-11-15T17:41:55.756Z"
+    }
+  },
+  {
+    "scenario": "S3",
+    "label": "headless + 类人贝塞尔操作",
+    "group": "bot",
+    "result": {
+      "sessionId": "d39aa794-6720-448d-a1fa-f91aaa3bfc13",
+      "score": 45,
+      "verdict": "bot",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": 68,
+          "capped": 45,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_UA_STRING",
+              "category": "headless",
+              "severity": "high",
+              "weight": 22,
+              "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+              "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+              "expected": "常规 Chrome UA 不含 Headless 字样"
+            },
+            {
+              "id": "HEADLESS_WEBDRIVER",
+              "category": "headless",
+              "severity": "high",
+              "weight": 14,
+              "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+              "observed": true,
+              "expected": "普通用户浏览器为 false/undefined"
+            },
+            {
+              "id": "HEADLESS_SWIFTSHADER",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 10,
+              "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+              "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+              "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+            },
+            {
+              "id": "HEADLESS_MISSING_CHROME",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 8,
+              "reason": "Chromium 系 UA 却没有 window.chrome 对象(新版无头模式特征)",
+              "observed": {
+                "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/",
+                "hasWindowChrome": false
+              },
+              "expected": "桌面 Chrome 存在 window.chrome"
+            },
+            {
+              "id": "HEADLESS_OUTER_INNER_ZERO",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 6,
+              "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+              "observed": 0,
+              "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+            },
+            {
+              "id": "HEADLESS_NOTIF_DENIED",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+              "observed": "denied",
+              "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+            },
+            {
+              "id": "HEADLESS_PLUGINS_EMPTY",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "桌面 Chromium 的 navigator.plugins 为空",
+              "observed": [],
+              "expected": "桌面 Chrome 至少含 PDF Viewer 等内置插件"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": -5,
+          "capped": 0,
+          "cap": 30,
+          "evidence": [
+            {
+              "id": "AUTO_HUMAN_TRUSTED_EVENTS",
+              "category": "automation",
+              "severity": "low",
+              "weight": -5,
+              "reason": "采集到足量 isTrusted=true 的输入事件,说明存在真实输入设备",
+              "observed": {
+                "total": 70,
+                "trusted": 70
+              }
+            }
+          ]
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": -6,
+          "capped": 0,
+          "cap": 20,
+          "evidence": [
+            {
+              "id": "BEH_HUMAN_RHYTHM",
+              "category": "behavior",
+              "severity": "low",
+              "weight": -6,
+              "reason": "打字节奏呈现人类特征:高变异且均值在真人区间",
+              "observed": {
+                "cv": 0.471,
+                "mean": 169.4,
+                "dwell": 1
+              }
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "HEADLESS_UA_STRING",
+          "category": "headless",
+          "severity": "high",
+          "weight": 22,
+          "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+          "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+          "expected": "常规 Chrome UA 不含 Headless 字样"
+        },
+        {
+          "id": "HEADLESS_WEBDRIVER",
+          "category": "headless",
+          "severity": "high",
+          "weight": 14,
+          "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+          "observed": true,
+          "expected": "普通用户浏览器为 false/undefined"
+        },
+        {
+          "id": "HEADLESS_SWIFTSHADER",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 10,
+          "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+          "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+        },
+        {
+          "id": "HEADLESS_MISSING_CHROME",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 8,
+          "reason": "Chromium 系 UA 却没有 window.chrome 对象(新版无头模式特征)",
+          "observed": {
+            "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/",
+            "hasWindowChrome": false
+          },
+          "expected": "桌面 Chrome 存在 window.chrome"
+        },
+        {
+          "id": "HEADLESS_OUTER_INNER_ZERO",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 6,
+          "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+          "observed": 0,
+          "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+        },
+        {
+          "id": "HEADLESS_NOTIF_DENIED",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+          "observed": "denied",
+          "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+        },
+        {
+          "id": "HEADLESS_PLUGINS_EMPTY",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "桌面 Chromium 的 navigator.plugins 为空",
+          "observed": [],
+          "expected": "桌面 Chrome 至少含 PDF Viewer 等内置插件"
+        },
+        {
+          "id": "AUTO_HUMAN_TRUSTED_EVENTS",
+          "category": "automation",
+          "severity": "low",
+          "weight": -5,
+          "reason": "采集到足量 isTrusted=true 的输入事件,说明存在真实输入设备",
+          "observed": {
+            "total": 70,
+            "trusted": 70
+          }
+        },
+        {
+          "id": "BEH_HUMAN_RHYTHM",
+          "category": "behavior",
+          "severity": "low",
+          "weight": -6,
+          "reason": "打字节奏呈现人类特征:高变异且均值在真人区间",
+          "observed": {
+            "cv": 0.471,
+            "mean": 169.4,
+            "dwell": 1
+          }
+        }
+      ],
+      "humanSignals": [
+        {
+          "id": "AUTO_HUMAN_TRUSTED_EVENTS",
+          "category": "automation",
+          "severity": "low",
+          "weight": -5,
+          "reason": "采集到足量 isTrusted=true 的输入事件,说明存在真实输入设备",
+          "observed": {
+            "total": 70,
+            "trusted": 70
+          }
+        },
+        {
+          "id": "BEH_HUMAN_RHYTHM",
+          "category": "behavior",
+          "severity": "low",
+          "weight": -6,
+          "reason": "打字节奏呈现人类特征:高变异且均值在真人区间",
+          "observed": {
+            "cv": 0.471,
+            "mean": 169.4,
+            "dwell": 1
+          }
+        }
+      ],
+      "dataQuality": {
+        "mouseSamples": 40,
+        "keySamples": 30,
+        "clickCount": 7,
+        "scrollCount": 10,
+        "behaviorInsufficient": false,
+        "envComplete": true
+      },
+      "summary": [
+        "硬判定:2 条高置信度取证信号同时出现,直接判 bot(常规阈值 60)",
+        "User-Agent 中直接包含 HeadlessChrome 标识(+22)",
+        "navigator.webdriver === true,浏览器正被 WebDriver 协议控制(+14)",
+        "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征(+10)"
+      ],
+      "scoredAt": "2026-11-15T17:42:07.007Z"
+    }
+  },
+  {
+    "scenario": "S4",
+    "label": "headed + 标准 Playwright 操作",
+    "group": "bot",
+    "result": {
+      "sessionId": "33cb3716-26e2-4c33-ad12-d9678720a6d8",
+      "score": 10,
+      "verdict": "suspect",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": 10,
+          "capped": 10,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_WEBDRIVER",
+              "category": "headless",
+              "severity": "high",
+              "weight": 14,
+              "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+              "observed": true,
+              "expected": "普通用户浏览器为 false/undefined"
+            },
+            {
+              "id": "HEADLESS_HUMAN_GL",
+              "category": "headless",
+              "severity": "low",
+              "weight": -4,
+              "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+              "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": 0,
+          "capped": 0,
+          "cap": 30,
+          "evidence": []
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "HEADLESS_WEBDRIVER",
+          "category": "headless",
+          "severity": "high",
+          "weight": 14,
+          "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+          "observed": true,
+          "expected": "普通用户浏览器为 false/undefined"
+        },
+        {
+          "id": "HEADLESS_HUMAN_GL",
+          "category": "headless",
+          "severity": "low",
+          "weight": -4,
+          "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+          "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+        }
+      ],
+      "humanSignals": [
+        {
+          "id": "HEADLESS_HUMAN_GL",
+          "category": "headless",
+          "severity": "low",
+          "weight": -4,
+          "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+          "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+        }
+      ],
+      "dataQuality": {
+        "mouseSamples": 2,
+        "keySamples": 0,
+        "clickCount": 6,
+        "scrollCount": 1,
+        "behaviorInsufficient": true,
+        "envComplete": true
+      },
+      "summary": [
+        "navigator.webdriver === true,浏览器正被 WebDriver 协议控制(+14)"
+      ],
+      "scoredAt": "2026-11-15T17:42:09.514Z"
+    }
+  },
+  {
+    "scenario": "S5",
+    "label": "headed + dispatchEvent 合成事件",
+    "group": "bot",
+    "result": {
+      "sessionId": "dd2e453a-8ecf-4b57-a5ff-e6f13846b591",
+      "score": 52,
+      "verdict": "bot",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": 10,
+          "capped": 10,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_WEBDRIVER",
+              "category": "headless",
+              "severity": "high",
+              "weight": 14,
+              "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+              "observed": true,
+              "expected": "普通用户浏览器为 false/undefined"
+            },
+            {
+              "id": "HEADLESS_HUMAN_GL",
+              "category": "headless",
+              "severity": "low",
+              "weight": -4,
+              "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+              "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": 34,
+          "capped": 30,
+          "cap": 30,
+          "evidence": [
+            {
+              "id": "AUTO_MOUSE_UNTRUSTED",
+              "category": "automation",
+              "severity": "high",
+              "weight": 16,
+              "reason": "鼠标事件 isTrusted=false,由 dispatchEvent 合成而非真实输入设备",
+              "observed": {
+                "ratio": 1,
+                "count": 20
+              },
+              "expected": "真实硬件产生的事件 isTrusted 恒为 true"
+            },
+            {
+              "id": "AUTO_CLICK_UNTRUSTED",
+              "category": "automation",
+              "severity": "medium",
+              "weight": 10,
+              "reason": "点击事件 isTrusted=false",
+              "observed": {
+                "ratio": 1,
+                "count": 8
+              },
+              "expected": "真实点击 isTrusted=true"
+            },
+            {
+              "id": "AUTO_SCROLL_UNTRUSTED",
+              "category": "automation",
+              "severity": "medium",
+              "weight": 8,
+              "reason": "滚动事件 isTrusted=false,由 scrollTo/scrollIntoView 触发",
+              "observed": {
+                "ratio": 0.89,
+                "count": 9
+              },
+              "expected": "用户滚动 isTrusted=true"
+            }
+          ]
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": 12,
+          "capped": 12,
+          "cap": 20,
+          "evidence": [
+            {
+              "id": "BEH_CLICK_DUPLICATE_SPAM",
+              "category": "behavior",
+              "severity": "low",
+              "weight": 6,
+              "reason": "多次点击落在完全相同的像素坐标,脚本定点重复点击",
+              "observed": {
+                "ratio": 0.86,
+                "count": 8
+              },
+              "expected": "真人连续点击坐标存在像素级抖动"
+            },
+            {
+              "id": "BEH_SCROLL_UNIFORM",
+              "category": "behavior",
+              "severity": "low",
+              "weight": 6,
+              "reason": "滚动增量完全一致,wheel 事件由脚本以固定步长派发",
+              "observed": {
+                "ratio": 0.86,
+                "count": 9
+              },
+              "expected": "真人滚动增量大小不一"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "AUTO_MOUSE_UNTRUSTED",
+          "category": "automation",
+          "severity": "high",
+          "weight": 16,
+          "reason": "鼠标事件 isTrusted=false,由 dispatchEvent 合成而非真实输入设备",
+          "observed": {
+            "ratio": 1,
+            "count": 20
+          },
+          "expected": "真实硬件产生的事件 isTrusted 恒为 true"
+        },
+        {
+          "id": "HEADLESS_WEBDRIVER",
+          "category": "headless",
+          "severity": "high",
+          "weight": 14,
+          "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+          "observed": true,
+          "expected": "普通用户浏览器为 false/undefined"
+        },
+        {
+          "id": "AUTO_CLICK_UNTRUSTED",
+          "category": "automation",
+          "severity": "medium",
+          "weight": 10,
+          "reason": "点击事件 isTrusted=false",
+          "observed": {
+            "ratio": 1,
+            "count": 8
+          },
+          "expected": "真实点击 isTrusted=true"
+        },
+        {
+          "id": "AUTO_SCROLL_UNTRUSTED",
+          "category": "automation",
+          "severity": "medium",
+          "weight": 8,
+          "reason": "滚动事件 isTrusted=false,由 scrollTo/scrollIntoView 触发",
+          "observed": {
+            "ratio": 0.89,
+            "count": 9
+          },
+          "expected": "用户滚动 isTrusted=true"
+        },
+        {
+          "id": "BEH_CLICK_DUPLICATE_SPAM",
+          "category": "behavior",
+          "severity": "low",
+          "weight": 6,
+          "reason": "多次点击落在完全相同的像素坐标,脚本定点重复点击",
+          "observed": {
+            "ratio": 0.86,
+            "count": 8
+          },
+          "expected": "真人连续点击坐标存在像素级抖动"
+        },
+        {
+          "id": "BEH_SCROLL_UNIFORM",
+          "category": "behavior",
+          "severity": "low",
+          "weight": 6,
+          "reason": "滚动增量完全一致,wheel 事件由脚本以固定步长派发",
+          "observed": {
+            "ratio": 0.86,
+            "count": 9
+          },
+          "expected": "真人滚动增量大小不一"
+        },
+        {
+          "id": "HEADLESS_HUMAN_GL",
+          "category": "headless",
+          "severity": "low",
+          "weight": -4,
+          "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+          "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+        }
+      ],
+      "humanSignals": [
+        {
+          "id": "HEADLESS_HUMAN_GL",
+          "category": "headless",
+          "severity": "low",
+          "weight": -4,
+          "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+          "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+        }
+      ],
+      "dataQuality": {
+        "mouseSamples": 20,
+        "keySamples": 0,
+        "clickCount": 8,
+        "scrollCount": 9,
+        "behaviorInsufficient": false,
+        "envComplete": true
+      },
+      "summary": [
+        "硬判定:2 条高置信度取证信号同时出现,直接判 bot(常规阈值 60)",
+        "鼠标事件 isTrusted=false,由 dispatchEvent 合成而非真实输入设备(+16)",
+        "navigator.webdriver === true,浏览器正被 WebDriver 协议控制(+14)",
+        "点击事件 isTrusted=false(+10)"
+      ],
+      "scoredAt": "2026-11-15T17:42:12.854Z"
+    }
+  },
+  {
+    "scenario": "S6",
+    "label": "headless + 伪装 iPhone UA",
+    "group": "bot",
+    "result": {
+      "sessionId": "821f1c7f-11e5-499b-ba94-ab828a7c86f9",
+      "score": 42,
+      "verdict": "bot",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": 28,
+          "capped": 28,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_WEBDRIVER",
+              "category": "headless",
+              "severity": "high",
+              "weight": 14,
+              "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+              "observed": true,
+              "expected": "普通用户浏览器为 false/undefined"
+            },
+            {
+              "id": "HEADLESS_SWIFTSHADER",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 10,
+              "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+              "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+              "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+            },
+            {
+              "id": "HEADLESS_NOTIF_DENIED",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+              "observed": "denied",
+              "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": 0,
+          "capped": 0,
+          "cap": 30,
+          "evidence": []
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 14,
+          "capped": 14,
+          "cap": 20,
+          "evidence": [
+            {
+              "id": "CONTRA_MOBILE_UA_NO_TOUCH",
+              "category": "contradiction",
+              "severity": "high",
+              "weight": 14,
+              "reason": "UA 声称是移动设备,但 maxTouchPoints=0 且无 coarse pointer",
+              "observed": {
+                "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) Apple",
+                "maxTouchPoints": 0,
+                "coarse": false
+              },
+              "expected": "手机/平板 UA 应具备触摸能力"
+            }
+          ]
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "HEADLESS_WEBDRIVER",
+          "category": "headless",
+          "severity": "high",
+          "weight": 14,
+          "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+          "observed": true,
+          "expected": "普通用户浏览器为 false/undefined"
+        },
+        {
+          "id": "CONTRA_MOBILE_UA_NO_TOUCH",
+          "category": "contradiction",
+          "severity": "high",
+          "weight": 14,
+          "reason": "UA 声称是移动设备,但 maxTouchPoints=0 且无 coarse pointer",
+          "observed": {
+            "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) Apple",
+            "maxTouchPoints": 0,
+            "coarse": false
+          },
+          "expected": "手机/平板 UA 应具备触摸能力"
+        },
+        {
+          "id": "HEADLESS_SWIFTSHADER",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 10,
+          "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+          "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+        },
+        {
+          "id": "HEADLESS_NOTIF_DENIED",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+          "observed": "denied",
+          "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+        }
+      ],
+      "humanSignals": [],
+      "dataQuality": {
+        "mouseSamples": 2,
+        "keySamples": 0,
+        "clickCount": 6,
+        "scrollCount": 1,
+        "behaviorInsufficient": true,
+        "envComplete": true
+      },
+      "summary": [
+        "硬判定:2 条高置信度取证信号同时出现,直接判 bot(常规阈值 60)",
+        "navigator.webdriver === true,浏览器正被 WebDriver 协议控制(+14)",
+        "UA 声称是移动设备,但 maxTouchPoints=0 且无 coarse pointer(+14)",
+        "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征(+10)"
+      ],
+      "scoredAt": "2026-11-15T17:42:16.255Z"
+    }
+  },
+  {
+    "scenario": "S7",
+    "label": "headless + 自动化框架全局变量",
+    "group": "bot",
+    "result": {
+      "sessionId": "c02e0723-1029-4604-a09a-e160183890aa",
+      "score": 63,
+      "verdict": "bot",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": 80,
+          "capped": 45,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_UA_STRING",
+              "category": "headless",
+              "severity": "high",
+              "weight": 22,
+              "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+              "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+              "expected": "常规 Chrome UA 不含 Headless 字样"
+            },
+            {
+              "id": "HEADLESS_WEBDRIVER",
+              "category": "headless",
+              "severity": "high",
+              "weight": 14,
+              "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+              "observed": true,
+              "expected": "普通用户浏览器为 false/undefined"
+            },
+            {
+              "id": "HEADLESS_CDC_VARS",
+              "category": "headless",
+              "severity": "high",
+              "weight": 12,
+              "reason": "window/document 上存在 ChromeDriver 注入的 cdc_ 变量",
+              "observed": [
+                "$chrome_asyncScriptInfo"
+              ],
+              "expected": "无 cdc_ 前缀变量"
+            },
+            {
+              "id": "HEADLESS_SWIFTSHADER",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 10,
+              "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+              "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+              "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+            },
+            {
+              "id": "HEADLESS_MISSING_CHROME",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 8,
+              "reason": "Chromium 系 UA 却没有 window.chrome 对象(新版无头模式特征)",
+              "observed": {
+                "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/",
+                "hasWindowChrome": false
+              },
+              "expected": "桌面 Chrome 存在 window.chrome"
+            },
+            {
+              "id": "HEADLESS_OUTER_INNER_ZERO",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 6,
+              "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+              "observed": 0,
+              "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+            },
+            {
+              "id": "HEADLESS_NOTIF_DENIED",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+              "observed": "denied",
+              "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+            },
+            {
+              "id": "HEADLESS_PLUGINS_EMPTY",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "桌面 Chromium 的 navigator.plugins 为空",
+              "observed": [],
+              "expected": "桌面 Chrome 至少含 PDF Viewer 等内置插件"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": 18,
+          "capped": 18,
+          "cap": 30,
+          "evidence": [
+            {
+              "id": "AUTO_GLOBALS_LEAK",
+              "category": "automation",
+              "severity": "high",
+              "weight": 18,
+              "reason": "全局作用域存在自动化框架注入变量(puppeteer/playwright/selenium 等)",
+              "observed": [
+                "callSelenium",
+                "__nightmare"
+              ],
+              "expected": "window 上无自动化框架变量"
+            }
+          ]
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "HEADLESS_UA_STRING",
+          "category": "headless",
+          "severity": "high",
+          "weight": 22,
+          "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+          "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+          "expected": "常规 Chrome UA 不含 Headless 字样"
+        },
+        {
+          "id": "AUTO_GLOBALS_LEAK",
+          "category": "automation",
+          "severity": "high",
+          "weight": 18,
+          "reason": "全局作用域存在自动化框架注入变量(puppeteer/playwright/selenium 等)",
+          "observed": [
+            "callSelenium",
+            "__nightmare"
+          ],
+          "expected": "window 上无自动化框架变量"
+        },
+        {
+          "id": "HEADLESS_WEBDRIVER",
+          "category": "headless",
+          "severity": "high",
+          "weight": 14,
+          "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+          "observed": true,
+          "expected": "普通用户浏览器为 false/undefined"
+        },
+        {
+          "id": "HEADLESS_CDC_VARS",
+          "category": "headless",
+          "severity": "high",
+          "weight": 12,
+          "reason": "window/document 上存在 ChromeDriver 注入的 cdc_ 变量",
+          "observed": [
+            "$chrome_asyncScriptInfo"
+          ],
+          "expected": "无 cdc_ 前缀变量"
+        },
+        {
+          "id": "HEADLESS_SWIFTSHADER",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 10,
+          "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+          "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+        },
+        {
+          "id": "HEADLESS_MISSING_CHROME",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 8,
+          "reason": "Chromium 系 UA 却没有 window.chrome 对象(新版无头模式特征)",
+          "observed": {
+            "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/",
+            "hasWindowChrome": false
+          },
+          "expected": "桌面 Chrome 存在 window.chrome"
+        },
+        {
+          "id": "HEADLESS_OUTER_INNER_ZERO",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 6,
+          "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+          "observed": 0,
+          "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+        },
+        {
+          "id": "HEADLESS_NOTIF_DENIED",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+          "observed": "denied",
+          "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+        },
+        {
+          "id": "HEADLESS_PLUGINS_EMPTY",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "桌面 Chromium 的 navigator.plugins 为空",
+          "observed": [],
+          "expected": "桌面 Chrome 至少含 PDF Viewer 等内置插件"
+        }
+      ],
+      "humanSignals": [],
+      "dataQuality": {
+        "mouseSamples": 2,
+        "keySamples": 0,
+        "clickCount": 6,
+        "scrollCount": 1,
+        "behaviorInsufficient": true,
+        "envComplete": true
+      },
+      "summary": [
+        "User-Agent 中直接包含 HeadlessChrome 标识(+22)",
+        "全局作用域存在自动化框架注入变量(puppeteer/playwright/selenium 等)(+18)",
+        "navigator.webdriver === true,浏览器正被 WebDriver 协议控制(+14)"
+      ],
+      "scoredAt": "2026-11-15T17:42:19.847Z"
+    }
+  },
+  {
+    "scenario": "S8",
+    "label": "headless 静默无操作 9s",
+    "group": "bot",
+    "result": {
+      "sessionId": "51d6859a-b7d9-49fe-bdc8-23bdc1d078a7",
+      "score": 51,
+      "verdict": "bot",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": 68,
+          "capped": 45,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_UA_STRING",
+              "category": "headless",
+              "severity": "high",
+              "weight": 22,
+              "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+              "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+              "expected": "常规 Chrome UA 不含 Headless 字样"
+            },
+            {
+              "id": "HEADLESS_WEBDRIVER",
+              "category": "headless",
+              "severity": "high",
+              "weight": 14,
+              "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+              "observed": true,
+              "expected": "普通用户浏览器为 false/undefined"
+            },
+            {
+              "id": "HEADLESS_SWIFTSHADER",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 10,
+              "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+              "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+              "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+            },
+            {
+              "id": "HEADLESS_MISSING_CHROME",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 8,
+              "reason": "Chromium 系 UA 却没有 window.chrome 对象(新版无头模式特征)",
+              "observed": {
+                "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/",
+                "hasWindowChrome": false
+              },
+              "expected": "桌面 Chrome 存在 window.chrome"
+            },
+            {
+              "id": "HEADLESS_OUTER_INNER_ZERO",
+              "category": "headless",
+              "severity": "medium",
+              "weight": 6,
+              "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+              "observed": 0,
+              "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+            },
+            {
+              "id": "HEADLESS_NOTIF_DENIED",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+              "observed": "denied",
+              "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+            },
+            {
+              "id": "HEADLESS_PLUGINS_EMPTY",
+              "category": "headless",
+              "severity": "low",
+              "weight": 4,
+              "reason": "桌面 Chromium 的 navigator.plugins 为空",
+              "observed": [],
+              "expected": "桌面 Chrome 至少含 PDF Viewer 等内置插件"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": 0,
+          "capped": 0,
+          "cap": 30,
+          "evidence": []
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 0,
+          "capped": 0,
+          "cap": 20,
+          "evidence": []
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": 6,
+          "capped": 6,
+          "cap": 20,
+          "evidence": [
+            {
+              "id": "BEH_NO_INPUT_LONG_SESSION",
+              "category": "behavior",
+              "severity": "low",
+              "weight": 6,
+              "reason": "会话超过 8 秒却没有任何鼠标/键盘/滚动输入,典型无头脚本静默跑流程",
+              "observed": {
+                "duration": 10207,
+                "total": 0
+              },
+              "expected": "真人会话会产生交互事件"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "HEADLESS_UA_STRING",
+          "category": "headless",
+          "severity": "high",
+          "weight": 22,
+          "reason": "User-Agent 中直接包含 HeadlessChrome 标识",
+          "observed": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+          "expected": "常规 Chrome UA 不含 Headless 字样"
+        },
+        {
+          "id": "HEADLESS_WEBDRIVER",
+          "category": "headless",
+          "severity": "high",
+          "weight": 14,
+          "reason": "navigator.webdriver === true,浏览器正被 WebDriver 协议控制",
+          "observed": true,
+          "expected": "普通用户浏览器为 false/undefined"
+        },
+        {
+          "id": "HEADLESS_SWIFTSHADER",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 10,
+          "reason": "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征",
+          "observed": "Google Inc. (Google) ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "expected": "硬件 GPU 渲染器(如 Apple M1、Intel Iris、NVIDIA)"
+        },
+        {
+          "id": "HEADLESS_MISSING_CHROME",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 8,
+          "reason": "Chromium 系 UA 却没有 window.chrome 对象(新版无头模式特征)",
+          "observed": {
+            "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/",
+            "hasWindowChrome": false
+          },
+          "expected": "桌面 Chrome 存在 window.chrome"
+        },
+        {
+          "id": "HEADLESS_OUTER_INNER_ZERO",
+          "category": "headless",
+          "severity": "medium",
+          "weight": 6,
+          "reason": "window.outerWidth 与 innerWidth 差值为 0,缺少真实浏览器窗口边框",
+          "observed": 0,
+          "expected": "有头桌面浏览器差值通常 >0(含侧边栏/窗口边框)"
+        },
+        {
+          "id": "BEH_NO_INPUT_LONG_SESSION",
+          "category": "behavior",
+          "severity": "low",
+          "weight": 6,
+          "reason": "会话超过 8 秒却没有任何鼠标/键盘/滚动输入,典型无头脚本静默跑流程",
+          "observed": {
+            "duration": 10207,
+            "total": 0
+          },
+          "expected": "真人会话会产生交互事件"
+        },
+        {
+          "id": "HEADLESS_NOTIF_DENIED",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "Notification 权限默认 denied,无头 Chrome 的默认行为",
+          "observed": "denied",
+          "expected": "普通浏览器默认 default(需用户主动拒绝才是 denied)"
+        },
+        {
+          "id": "HEADLESS_PLUGINS_EMPTY",
+          "category": "headless",
+          "severity": "low",
+          "weight": 4,
+          "reason": "桌面 Chromium 的 navigator.plugins 为空",
+          "observed": [],
+          "expected": "桌面 Chrome 至少含 PDF Viewer 等内置插件"
+        }
+      ],
+      "humanSignals": [],
+      "dataQuality": {
+        "mouseSamples": 0,
+        "keySamples": 0,
+        "clickCount": 0,
+        "scrollCount": 0,
+        "behaviorInsufficient": true,
+        "envComplete": true
+      },
+      "summary": [
+        "硬判定:2 条高置信度取证信号同时出现,直接判 bot(常规阈值 60)",
+        "User-Agent 中直接包含 HeadlessChrome 标识(+22)",
+        "navigator.webdriver === true,浏览器正被 WebDriver 协议控制(+14)",
+        "WebGL 使用 SwiftShader/软件渲染,无头环境典型特征(+10)"
+      ],
+      "scoredAt": "2026-11-15T17:42:31.302Z"
+    }
+  },
+  {
+    "scenario": "H1",
+    "label": "headed 类人操作 + 隐藏 webdriver(对照)",
+    "group": "human",
+    "result": {
+      "sessionId": "48ec9db9-abf5-4547-b07b-548f2bdff210",
+      "score": 5,
+      "verdict": "human",
+      "threshold": {
+        "suspect": 30,
+        "bot": 60
+      },
+      "categories": [
+        {
+          "category": "headless",
+          "label": "无头浏览器特征",
+          "raw": -4,
+          "capped": 0,
+          "cap": 45,
+          "evidence": [
+            {
+              "id": "HEADLESS_HUMAN_GL",
+              "category": "headless",
+              "severity": "low",
+              "weight": -4,
+              "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+              "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+            }
+          ]
+        },
+        {
+          "category": "automation",
+          "label": "自动化框架痕迹",
+          "raw": -1,
+          "capped": 0,
+          "cap": 30,
+          "evidence": [
+            {
+              "id": "AUTO_WEBDRIVER_GETTER_PATCH",
+              "category": "automation",
+              "severity": "low",
+              "weight": 4,
+              "reason": "仅 navigator.webdriver 的 getter 被替换为非原生函数(轻度反检测补丁)",
+              "observed": [
+                "navigator.webdriver"
+              ],
+              "expected": "未做补丁时该 getter 为原生"
+            },
+            {
+              "id": "AUTO_HUMAN_TRUSTED_EVENTS",
+              "category": "automation",
+              "severity": "low",
+              "weight": -5,
+              "reason": "采集到足量 isTrusted=true 的输入事件,说明存在真实输入设备",
+              "observed": {
+                "total": 79,
+                "trusted": 79
+              }
+            }
+          ]
+        },
+        {
+          "category": "contradiction",
+          "label": "环境信号矛盾",
+          "raw": 5,
+          "capped": 5,
+          "cap": 20,
+          "evidence": [
+            {
+              "id": "CONTRA_WEBDRIVER_HIDDEN_BADLY",
+              "category": "contradiction",
+              "severity": "low",
+              "weight": 5,
+              "reason": "webdriver 被改成 false,但 Navigator.prototype 上的 getter 已非原生(补丁式伪装痕迹;隐私工具也可能触发,仅作佐证)",
+              "observed": [
+                "navigator.webdriver"
+              ],
+              "expected": "无补丁时 webdriver getter 为原生"
+            }
+          ]
+        },
+        {
+          "category": "behavior",
+          "label": "行为异常",
+          "raw": -6,
+          "capped": 0,
+          "cap": 20,
+          "evidence": [
+            {
+              "id": "BEH_HUMAN_RHYTHM",
+              "category": "behavior",
+              "severity": "low",
+              "weight": -6,
+              "reason": "打字节奏呈现人类特征:高变异且均值在真人区间",
+              "observed": {
+                "cv": 0.537,
+                "mean": 162.7,
+                "dwell": 1
+              }
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "CONTRA_WEBDRIVER_HIDDEN_BADLY",
+          "category": "contradiction",
+          "severity": "low",
+          "weight": 5,
+          "reason": "webdriver 被改成 false,但 Navigator.prototype 上的 getter 已非原生(补丁式伪装痕迹;隐私工具也可能触发,仅作佐证)",
+          "observed": [
+            "navigator.webdriver"
+          ],
+          "expected": "无补丁时 webdriver getter 为原生"
+        },
+        {
+          "id": "AUTO_WEBDRIVER_GETTER_PATCH",
+          "category": "automation",
+          "severity": "low",
+          "weight": 4,
+          "reason": "仅 navigator.webdriver 的 getter 被替换为非原生函数(轻度反检测补丁)",
+          "observed": [
+            "navigator.webdriver"
+          ],
+          "expected": "未做补丁时该 getter 为原生"
+        },
+        {
+          "id": "HEADLESS_HUMAN_GL",
+          "category": "headless",
+          "severity": "low",
+          "weight": -4,
+          "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+          "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+        },
+        {
+          "id": "AUTO_HUMAN_TRUSTED_EVENTS",
+          "category": "automation",
+          "severity": "low",
+          "weight": -5,
+          "reason": "采集到足量 isTrusted=true 的输入事件,说明存在真实输入设备",
+          "observed": {
+            "total": 79,
+            "trusted": 79
+          }
+        },
+        {
+          "id": "BEH_HUMAN_RHYTHM",
+          "category": "behavior",
+          "severity": "low",
+          "weight": -6,
+          "reason": "打字节奏呈现人类特征:高变异且均值在真人区间",
+          "observed": {
+            "cv": 0.537,
+            "mean": 162.7,
+            "dwell": 1
+          }
+        }
+      ],
+      "humanSignals": [
+        {
+          "id": "HEADLESS_HUMAN_GL",
+          "category": "headless",
+          "severity": "low",
+          "weight": -4,
+          "reason": "检测到真实硬件 GPU 渲染器,降低无头嫌疑",
+          "observed": "Google Inc. (Apple) ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+        },
+        {
+          "id": "AUTO_HUMAN_TRUSTED_EVENTS",
+          "category": "automation",
+          "severity": "low",
+          "weight": -5,
+          "reason": "采集到足量 isTrusted=true 的输入事件,说明存在真实输入设备",
+          "observed": {
+            "total": 79,
+            "trusted": 79
+          }
+        },
+        {
+          "id": "BEH_HUMAN_RHYTHM",
+          "category": "behavior",
+          "severity": "low",
+          "weight": -6,
+          "reason": "打字节奏呈现人类特征:高变异且均值在真人区间",
+          "observed": {
+            "cv": 0.537,
+            "mean": 162.7,
+            "dwell": 1
+          }
+        }
+      ],
+      "dataQuality": {
+        "mouseSamples": 49,
+        "keySamples": 30,
+        "clickCount": 7,
+        "scrollCount": 9,
+        "behaviorInsufficient": false,
+        "envComplete": true
+      },
+      "summary": [
+        "webdriver 被改成 false,但 Navigator.prototype 上的 getter 已非原生(补丁式伪装痕迹;隐私工具也可能触发,仅作佐证)(+5)",
+        "仅 navigator.webdriver 的 getter 被替换为非原生函数(轻度反检测补丁)(+4)"
+      ],
+      "scoredAt": "2026-11-15T17:42:42.621Z"
+    }
+  }
+]

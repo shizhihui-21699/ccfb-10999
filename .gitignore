@@ -16,3 +16,9 @@ node_modules/
 __pycache__/
 .venv/
 venv/
+
+# Playwright / test artifacts
+test-results/
+playwright-report/
+tests/results/playwright-report.json
+sdk/dist-types/
