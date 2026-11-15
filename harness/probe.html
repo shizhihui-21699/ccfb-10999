@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>probe</title></head>
+<body>
+<div id="target" style="width:300px;height:200px;background:#ddd;margin:40px">target</div>
+<script>
+window.probeResults = (async () => {
+  const R = {};
+  const safe = (fn, d = null) => { try { return fn(); } catch (e) { return 'ERR:' + e.name; } };
+  const n = navigator;
+  R.ua = n.userAgent;
+  R.uaData = safe(() => n.userAgentData ? { brands: n.userAgentData.brands, mobile: n.userAgentData.mobile, platform: n.userAgentData.platform, arch: n.userAgentData.architecture, bitness: n.userAgentData.bitness, model: n.userAgentData.model, platformVersion: n.userAgentData.platformVersion, wow64: n.userAgentData.wow64, fullVersionList: n.userAgentData.fullVersionList } : null);
+  R.language = n.language;
+  R.languages = n.languages;
+  R.platform = safe(() => n.platform);
+  R.vendor = safe(() => n.vendor);
+  R.vendorSub = safe(() => n.vendorSub);
+  R.productSub = safe(() => n.productSub);
+  R.webdriver = safe(() => n.webdriver);
+  R.maxTouchPoints = safe(() => n.maxTouchPoints);
+  R.ontouchstart = safe(() => 'ontouchstart' in window);
+  R.touchEventCtor = safe(() => typeof TouchEvent);
+  R.pluginsLen = safe(() => n.plugins.length);
+  R.plugins = safe(() => Array.from(n.plugins).map(p => p.name + '/' + p.filename));
+  R.mimeLen = safe(() => n.mimeTypes.length);
+  R.hardwareConcurrency = safe(() => n.hardwareConcurrency);
+  R.deviceMemory = safe(() => n.deviceMemory);
+  R.connection = safe(() => n.connection ? { type: n.connection.type, effectiveType: n.connection.effectiveType, downlink: n.connection.downlink, rtt: n.connection.rtt } : null);
+  R.permissions = await new Promise(res => {
+    if (!n.permissions || !n.permissions.query) return res(null);
+    n.permissions.query({ name: 'notifications' }).then(p => res({ state: p.state }), e => res('ERR:' + e.name));
+  });
+  R.notificationPermission = safe(() => Notification.permission);
+  R.chrome = safe(() => window.chrome ? { keys: Object.keys(window.chrome) } : null);
+  R.chromeRuntime = safe(() => !!(window.chrome && window.chrome.runtime));
+  R.chromeApp = safe(() => !!(window.chrome && window.chrome.app));
+  R.chromeCsi = safe(() => !!(window.chrome && window.chrome.csi));
+  R.chromeLoadTimes = safe(() => !!(window.chrome && window.chrome.loadTimes));
+  R.chromeKeysDetail = safe(() => { const c = window.chrome; try { return Object.getOwnPropertyNames(c); } catch { return 'ERR'; } });
+  R.webgl = safe(() => {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) return null;
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    return {
+      vendor: ext ? gl.getParameter(ext.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR),
+      renderer: ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER),
+      version: gl.getParameter(gl.VERSION),
+      shading: gl.getParameter(gl.SHADING_LANGUAGE_VERSION),
+      maxTexture: gl.getParameter(gl.MAX_TEXTURE_SIZE),
+      antialias: gl.getContextAttributes().antialias,
+      extensions: gl.getSupportedExtensions() ? gl.getSupportedExtensions().length : 0
+    };
+  });
+  R.webgl2 = safe(() => {
+    const gl = document.createElement('canvas').getContext('webgl2');
+    if (!gl) return null;
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    return { vendor: ext ? gl.getParameter(ext.UNMASKED_VENDOR_WEBGL) : null, renderer: ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : null };
+  });
+  R.screen = { width: screen.width, height: screen.height, availWidth: screen.availWidth, availHeight: screen.availHeight, colorDepth: screen.colorDepth, pixelDepth: screen.pixelDepth, orientation: safe(() => screen.orientation && screen.orientation.type), availLeft: safe(() => screen.availLeft), availTop: safe(() => screen.availTop) };
+  R.window = { innerWidth: innerWidth, innerHeight: innerHeight, outerWidth: outerWidth, outerHeight: outerHeight, screenX: screenX, screenY: screenY, screenLeft: screenLeft, screenTop: screenTop, dpr: devicePixelRatio, scrollX: scrollX, scrollY: scrollY, visual: safe(() => visualViewport ? { width: visualViewport.width, height: visualViewport.height, scale: visualViewport.scale } : null) };
+  R.timezone = safe(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
+  R.locale = safe(() => Intl.DateTimeFormat().resolvedOptions().locale);
+  R.fonts = safe(() => {
+    const c = document.createElement('canvas').getContext('2d');
+    const measure = (f, t) => { c.font = f; return c.measureText(t).width; };
+    return {
+      sansI: measure('16px sans-serif', 'iiiiiiiiii'),
+      sansM: measure('16px sans-serif', 'mmmmmmmmmm'),
+      serifI: measure('16px serif', 'iiiiiiiiii'),
+      monoI: measure('16px monospace', 'iiiiiiiiii'),
+      monoM: measure('16px monospace', 'mmmmmmmmmm'),
+      emoji: measure('16px sans-serif', '😀'),
+      defaultDiffers: measure('16px sans-serif', 'mmmmmmmmmm') !== measure('16px serif', 'mmmmmmmmmm')
+    };
+  });
+  R.notif = safe(() => ({ perm: Notification.permission, maxActions: Notification.maxActions }));
+  R.media = safe(() => n.mediaDevices ? { enumerate: typeof n.mediaDevices.enumerateDevices } : null);
+  R.userActivation = safe(() => n.userActivation ? { active: n.userActivation.isActive, hasBeen: n.userActivation.hasBeenActive } : null);
+  R.idle = safe(() => typeof requestIdleCallback);
+  R.documentHidden = safe(() => ({ hidden: document.hidden, vis: document.visibilityState, focus: document.hasFocus() }));
+  R.documentAttrs = safe(() => { const a = {}; for (const at of document.documentElement.attributes) a[at.name] = at.value; return a; });
+  R.scan = safe(() => {
+    const keys = ['__playwright__', '__playwright', '__pw_manual', '__pwInitScripts', '__nightmare', '_phantom', 'callPhantom', 'callSelenium', '_selenium', '__selenium_unwrapped', '__webdriver_evaluate', '__webdriver_script_fn', '__fxdriver_evaluate', '__driver_evaluate', '__driver_unwrapped', 'domAutomation', 'domAutomationController', 'spawn', '__lastWatirAlert', '__lastWatirConfirm', '__webview_execute', 'cdc_adoQpoasnfa76pfcZLmcfl_Array'];
+    const found = {};
+    for (const k of keys) { if (k in window) found[k] = true; }
+    const cdc = Object.keys(window).filter(k => /^cdc_|^\$cdc_|^\$chrome_async|^\$wdc_/.test(k));
+    const own = Object.getOwnPropertyNames(window).filter(k => /cdc|playwright|phantom|selenium|driver|webdriver|automation/i.test(k));
+    return { known: found, cdc, ownCount: own.length, own: own.slice(0, 40) };
+  });
+  R.protoLeaks = safe(() => {
+    const out = {};
+    out.windowKeys = Object.getOwnPropertyNames(window).length;
+    out.functionToStringNative = /\{\s*\[native code\]\s*\}/.test(Function.prototype.toString.call(document.createElement));
+    out.getterStack = (() => {
+      const o = {};
+      let stack = '';
+      Object.defineProperty(o, 'p', { get() { stack = new Error().stack || ''; return 1; } });
+      void o.p;
+      return stack.split('\n').length;
+    })();
+    return out;
+  });
+  R.nowResolution = safe(() => {
+    let min = Infinity;
+    let last = performance.now();
+    for (let i = 0; i < 20000; i++) {
+      const t = performance.now();
+      if (t !== last) { min = Math.min(min, t - last); last = t; }
+    }
+    return min;
+  });
+  R.errorStack = safe(() => Error().stack);
+  R.sameScreenViewport = innerWidth === screen.width && innerHeight === screen.height;
+  R.outerEqualsScreen = outerWidth === screen.width && outerHeight === screen.height;
+
+  // interaction probes
+  const ev = { events: [], trusted: [] };
+  const target = document.getElementById('target');
+  ['pointermove', 'mousemove', 'pointerdown', 'mousedown', 'mouseup', 'click', 'keydown', 'keyup'].forEach(type => {
+    window.addEventListener(type, e => {
+      if (ev.events.length < 200) ev.events.push({ type, isTrusted: e.isTrusted, x: e.clientX, y: e.clientY, ts: e.timeStamp, pointerType: e.pointerType || null, detail: e.detail });
+      ev.trusted.push({ type, isTrusted: e.isTrusted });
+    }, { passive: true, capture: true });
+  });
+  window.__probeEvents = ev;
+  return R;
+})();
+</script>
+</body>
+</html>

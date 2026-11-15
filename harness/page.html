@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><title>促销活动 · 测试页</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  body{margin:0;font:16px/1.5 -apple-system,"PingFang SC",sans-serif;background:#f7f7f9;color:#222}
+  header{padding:18px 20px;background:linear-gradient(135deg,#ff5c39,#ff8a3d);color:#fff}
+  main{max-width:720px;margin:0 auto;padding:20px}
+  .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+  input{width:100%;box-sizing:border-box;padding:12px;font-size:16px;border:1px solid #ddd;border-radius:8px;margin:8px 0}
+  button{width:100%;padding:14px;font-size:17px;border:0;border-radius:8px;background:#ff5c39;color:#fff;margin-top:8px}
+  #out{margin-top:14px;font-size:13px;color:#555;white-space:pre-wrap}
+</style></head>
+<body>
+<header><strong>限时秒杀</strong> · 每人限领一次</header>
+<main>
+  <div class="card">
+    <label for="phone">手机号</label>
+    <input id="phone" inputmode="numeric" autocomplete="tel" placeholder="请输入手机号">
+    <button id="coupon">领取优惠券</button>
+    <div id="out"></div>
+  </div>
+</main>
+<script src="/sdk.js"></script>
+<script>
+  window.bs = BotShield.init({
+    endpoint: '/api/collect',
+    siteKey: 'harness',
+    autoSend: false,
+    onScore: function (r) {
+      window.__score = r;
+      var el = document.getElementById('out');
+      if (el) el.textContent = r.summary;
+    }
+  });
+
+  // Report on-screen geometry so an external driver (which has no CDP access)
+  // can aim OS-level input at this page. This is test instrumentation only;
+  // the production SDK has no such call.
+  function geom() {
+    var c = document.getElementById('coupon').getBoundingClientRect();
+    var p = document.getElementById('phone').getBoundingClientRect();
+    fetch('/api/geom', {
+      method: 'POST',
+      body: JSON.stringify({
+        sx: screenX, sy: screenY,
+        chromeTop: outerHeight - innerHeight,
+        inner: [innerWidth, innerHeight],
+        outer: [outerWidth, outerHeight],
+        coupon: { x: c.x + c.width / 2, y: c.y + c.height / 2 },
+        phone: { x: p.x + p.width / 2, y: p.y + p.height / 2 },
+        ready: true
+      })
+    });
+  }
+  window.addEventListener('load', function () { setTimeout(geom, 120); });
+
+  // The claim action sends the packet; this is also how a real merchant page
+  // would call the SDK.
+  document.getElementById('coupon').addEventListener('click', function () {
+    window.bs.send();
+  });
+</script>
+</body></html>

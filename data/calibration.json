@@ -1,0 +1,121 @@
+{
+  "generatedFromPackets": 36,
+  "humanSessions": 18,
+  "automatedSessions": 18,
+  "measurements": {
+    "humanStraightness": {
+      "n": 18,
+      "min": 0.7654,
+      "p10": 0.7674,
+      "median": 0.7746,
+      "p90": 0.7845,
+      "max": 0.7953
+    },
+    "humanSegCV": {
+      "n": 18,
+      "min": 0.5498,
+      "p10": 0.5514,
+      "median": 0.578,
+      "p90": 0.5877,
+      "max": 0.5904
+    },
+    "humanDirRate": {
+      "n": 18,
+      "min": 0.2571,
+      "p10": 0.2857,
+      "median": 0.3571,
+      "p90": 0.4143,
+      "max": 0.4286
+    },
+    "humanClickDwellMs": {
+      "n": 18,
+      "min": 75.4333,
+      "p10": 76.6333,
+      "median": 93.9333,
+      "p90": 98.5,
+      "max": 100.4167
+    },
+    "humanKeyGapMedianMs": {
+      "n": 18,
+      "min": 100.3,
+      "p10": 108.1,
+      "median": 177.9,
+      "p90": 229.1,
+      "max": 243.5
+    },
+    "humanKeyGapCV": {
+      "n": 18,
+      "min": 0.4047,
+      "p10": 0.4211,
+      "median": 0.5809,
+      "p90": 0.7671,
+      "max": 0.8192
+    },
+    "humanKeyDwellCV": {
+      "n": 18,
+      "min": 0.1425,
+      "p10": 0.1593,
+      "median": 0.4102,
+      "p90": 0.4982,
+      "max": 0.5018
+    },
+    "humanFirstClickMs": {
+      "n": 18,
+      "min": 1767,
+      "p10": 1783.6,
+      "median": 2025.1,
+      "p90": 2070.1,
+      "max": 2071.9
+    },
+    "humanTeleportations": {
+      "n": 18,
+      "min": 0,
+      "p10": 0,
+      "median": 0,
+      "p90": 0,
+      "max": 0
+    },
+    "automatedStraightness": {
+      "n": 9,
+      "min": 0.9,
+      "p10": 0.9,
+      "median": 1,
+      "p90": 1,
+      "max": 1
+    },
+    "automatedSegCV": {
+      "n": 9,
+      "min": 0,
+      "p10": 0,
+      "median": 0.2673,
+      "p90": 1.261,
+      "max": 1.261
+    },
+    "automatedKeyGapMedianMs": {
+      "n": 18,
+      "min": 0,
+      "p10": 0,
+      "median": 0,
+      "p90": 0.2,
+      "max": 0.3
+    },
+    "automatedTeleportations": {
+      "n": 18,
+      "min": 0,
+      "p10": 0,
+      "median": 0,
+      "p90": 1,
+      "max": 1
+    }
+  },
+  "thresholdsRationale": {
+    "mouse.perfect-straight": "触发阈值 0.999；真人实测 straightness 上界见 humanStraightness.max，两者无重叠",
+    "mouse.equal-segments": "触发阈值 segCV < 0.02；真人下界见 humanSegCV.min",
+    "mouse.metronome": "触发阈值 dtCV < 0.05；真人 dtCV 远高于此",
+    "mouse.press-too-short": "触发阈值 < 25ms；真人点击按下时长中位见 humanClickDwellMs.median",
+    "kb.metronome": "触发阈值 gap CV < 0.15；真人下界见 humanKeyGapCV.min",
+    "kb.dwell-constant": "触发阈值 CV < 0.06 且 n>=8；早期 0.1/n>=5 曾在真人样本上误报，故收紧",
+    "mouse.teleport": "触发阈值单步 >=60px 且速度 >=20000px/s；真人样本 teleportations 恒为 0",
+    "touch.contact-too-short": "触发阈值 < 35ms；合成触摸实测 0.1–14ms"
+  }
+}

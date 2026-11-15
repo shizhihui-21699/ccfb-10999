@@ -1,0 +1,1195 @@
+[
+  {
+    "mode": "headless-default",
+    "env": {
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+      "uaData": {
+        "brands": [
+          {
+            "brand": "HeadlessChrome",
+            "version": "159"
+          },
+          {
+            "brand": "Not/A)Brand",
+            "version": "8"
+          },
+          {
+            "brand": "Chromium",
+            "version": "159"
+          }
+        ],
+        "mobile": false,
+        "platform": "macOS"
+      },
+      "language": "en-US",
+      "languages": [
+        "en-US"
+      ],
+      "platform": "MacIntel",
+      "vendor": "Google Inc.",
+      "vendorSub": "",
+      "productSub": "20030107",
+      "webdriver": true,
+      "maxTouchPoints": 0,
+      "ontouchstart": false,
+      "touchEventCtor": "function",
+      "pluginsLen": 0,
+      "plugins": [],
+      "mimeLen": 0,
+      "hardwareConcurrency": 14,
+      "deviceMemory": 32,
+      "connection": {
+        "effectiveType": "4g",
+        "downlink": 10,
+        "rtt": 0
+      },
+      "permissions": {
+        "state": "prompt"
+      },
+      "notificationPermission": "denied",
+      "chrome": null,
+      "chromeRuntime": false,
+      "chromeApp": false,
+      "chromeCsi": false,
+      "chromeLoadTimes": false,
+      "chromeKeysDetail": "ERR",
+      "webgl": {
+        "vendor": "Google Inc. (Google)",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "shading": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+        "maxTexture": 8192,
+        "antialias": true,
+        "extensions": 35
+      },
+      "webgl2": {
+        "vendor": "Google Inc. (Google)",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      },
+      "screen": {
+        "width": 1280,
+        "height": 720,
+        "availWidth": 1280,
+        "availHeight": 720,
+        "colorDepth": 24,
+        "pixelDepth": 24,
+        "orientation": "landscape-primary",
+        "availLeft": 0,
+        "availTop": 0
+      },
+      "window": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "outerWidth": 1280,
+        "outerHeight": 720,
+        "screenX": 0,
+        "screenY": 0,
+        "screenLeft": 0,
+        "screenTop": 0,
+        "dpr": 1,
+        "scrollX": 0,
+        "scrollY": 0,
+        "visual": {
+          "width": 1280,
+          "height": 720,
+          "scale": 1
+        }
+      },
+      "timezone": "Asia/Shanghai",
+      "locale": "en-US",
+      "fonts": {
+        "sansI": 35.546875,
+        "sansM": 133.28125,
+        "serifI": 44.453125,
+        "monoI": 96.015625,
+        "monoM": 96.015625,
+        "emoji": 20,
+        "defaultDiffers": true
+      },
+      "notif": {
+        "perm": "denied",
+        "maxActions": 2
+      },
+      "media": {
+        "enumerate": "function"
+      },
+      "userActivation": {
+        "active": false,
+        "hasBeen": false
+      },
+      "idle": "function",
+      "documentHidden": {
+        "hidden": false,
+        "vis": "visible",
+        "focus": true
+      },
+      "documentAttrs": {},
+      "scan": {
+        "known": {},
+        "cdc": [],
+        "ownCount": 0,
+        "own": []
+      },
+      "protoLeaks": {
+        "windowKeys": 1244,
+        "functionToStringNative": true,
+        "getterStack": 6
+      },
+      "nowResolution": 0.09999999403953552,
+      "errorStack": "Error\n    at http://127.0.0.1:53198/:114:29\n    at safe (http://127.0.0.1:53198/:9:49)\n    at http://127.0.0.1:53198/:114:18",
+      "sameScreenViewport": true,
+      "outerEqualsScreen": true
+    },
+    "headers": {
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+      "sec-ch-ua": "\"HeadlessChrome\";v=\"159\", \"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"159\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    },
+    "events": [
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 213.19999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 213.59999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 214,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 214.09999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 214.40000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 214.59999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 214.69999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 214.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.09999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215.19999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.30000001192093,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215.5,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.59999999403954,
+        "pointerType": null,
+        "detail": 0
+      }
+    ],
+    "trustedSummary": {
+      "pointermove": {
+        "total": 11,
+        "trusted": 11,
+        "untrusted": 0
+      },
+      "mousemove": {
+        "total": 11,
+        "trusted": 11,
+        "untrusted": 0
+      },
+      "pointerdown": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "mousedown": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "mouseup": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "click": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "keydown": {
+        "total": 7,
+        "trusted": 7,
+        "untrusted": 0
+      },
+      "keyup": {
+        "total": 7,
+        "trusted": 7,
+        "untrusted": 0
+      }
+    },
+    "logs": []
+  },
+  {
+    "mode": "headless-mobile-uatrick",
+    "env": {
+      "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Mobile/15E148 Safari/604.1",
+      "uaData": {
+        "brands": [
+          {
+            "brand": "HeadlessChrome",
+            "version": "159"
+          },
+          {
+            "brand": "Not/A)Brand",
+            "version": "8"
+          },
+          {
+            "brand": "Chromium",
+            "version": "159"
+          }
+        ],
+        "mobile": true,
+        "platform": "iOS"
+      },
+      "language": "en-US",
+      "languages": [
+        "en-US"
+      ],
+      "platform": "MacIntel",
+      "vendor": "Google Inc.",
+      "vendorSub": "",
+      "productSub": "20030107",
+      "webdriver": true,
+      "maxTouchPoints": 1,
+      "ontouchstart": true,
+      "touchEventCtor": "function",
+      "pluginsLen": 0,
+      "plugins": [],
+      "mimeLen": 0,
+      "hardwareConcurrency": 14,
+      "deviceMemory": 32,
+      "connection": {
+        "effectiveType": "4g",
+        "downlink": 10,
+        "rtt": 0
+      },
+      "permissions": {
+        "state": "prompt"
+      },
+      "notificationPermission": "denied",
+      "chrome": null,
+      "chromeRuntime": false,
+      "chromeApp": false,
+      "chromeCsi": false,
+      "chromeLoadTimes": false,
+      "chromeKeysDetail": "ERR",
+      "webgl": {
+        "vendor": "Google Inc. (Google)",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "shading": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+        "maxTexture": 8192,
+        "antialias": true,
+        "extensions": 35
+      },
+      "webgl2": {
+        "vendor": "Google Inc. (Google)",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      },
+      "screen": {
+        "width": 390,
+        "height": 844,
+        "availWidth": 390,
+        "availHeight": 844,
+        "colorDepth": 24,
+        "pixelDepth": 24,
+        "orientation": "portrait-primary",
+        "availLeft": 0,
+        "availTop": 0
+      },
+      "window": {
+        "innerWidth": 980,
+        "innerHeight": 2121,
+        "outerWidth": 390,
+        "outerHeight": 844,
+        "screenX": 0,
+        "screenY": 0,
+        "screenLeft": 0,
+        "screenTop": 0,
+        "dpr": 3,
+        "scrollX": 0,
+        "scrollY": 0,
+        "visual": {
+          "width": 980,
+          "height": 2120.820556640625,
+          "scale": 0.3979591727256775
+        }
+      },
+      "timezone": "Asia/Shanghai",
+      "locale": "en-US",
+      "fonts": {
+        "sansI": 35.546875,
+        "sansM": 133.28125,
+        "serifI": 44.453125,
+        "monoI": 96.015625,
+        "monoM": 96.015625,
+        "emoji": 20,
+        "defaultDiffers": true
+      },
+      "notif": {
+        "perm": "denied",
+        "maxActions": 2
+      },
+      "media": {
+        "enumerate": "function"
+      },
+      "userActivation": {
+        "active": false,
+        "hasBeen": false
+      },
+      "idle": "function",
+      "documentHidden": {
+        "hidden": false,
+        "vis": "visible",
+        "focus": true
+      },
+      "documentAttrs": {},
+      "scan": {
+        "known": {},
+        "cdc": [],
+        "ownCount": 0,
+        "own": []
+      },
+      "protoLeaks": {
+        "windowKeys": 1250,
+        "functionToStringNative": true,
+        "getterStack": 6
+      },
+      "nowResolution": 0.09999999403953552,
+      "errorStack": "Error\n    at http://127.0.0.1:53198/:114:29\n    at safe (http://127.0.0.1:53198/:9:49)\n    at http://127.0.0.1:53198/:114:18",
+      "sameScreenViewport": false,
+      "outerEqualsScreen": true
+    },
+    "headers": {
+      "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Mobile/15E148 Safari/604.1",
+      "sec-ch-ua": "\"HeadlessChrome\";v=\"159\", \"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"159\"",
+      "sec-ch-ua-mobile": "?1",
+      "sec-ch-ua-platform": "\"iOS\""
+    },
+    "events": [
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 213.5,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 213.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 214.19999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 214.2999999821186,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 214.69999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 214.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 214.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.09999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215.2999999821186,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.2999999821186,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215.5,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.69999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215.7999999821186,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      }
+    ],
+    "trustedSummary": {
+      "pointermove": {
+        "total": 11,
+        "trusted": 11,
+        "untrusted": 0
+      },
+      "mousemove": {
+        "total": 11,
+        "trusted": 11,
+        "untrusted": 0
+      },
+      "pointerdown": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "mousedown": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "mouseup": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "click": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "keydown": {
+        "total": 7,
+        "trusted": 7,
+        "untrusted": 0
+      },
+      "keyup": {
+        "total": 7,
+        "trusted": 7,
+        "untrusted": 0
+      }
+    },
+    "logs": []
+  },
+  {
+    "mode": "headless-stealth",
+    "env": {
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+      "uaData": {
+        "brands": [
+          {
+            "brand": "HeadlessChrome",
+            "version": "159"
+          },
+          {
+            "brand": "Not/A)Brand",
+            "version": "8"
+          },
+          {
+            "brand": "Chromium",
+            "version": "159"
+          }
+        ],
+        "mobile": false,
+        "platform": "macOS"
+      },
+      "language": "en-US",
+      "languages": [
+        "en-US",
+        "en"
+      ],
+      "platform": "MacIntel",
+      "vendor": "Google Inc.",
+      "vendorSub": "",
+      "productSub": "20030107",
+      "maxTouchPoints": 0,
+      "ontouchstart": false,
+      "touchEventCtor": "function",
+      "pluginsLen": 3,
+      "plugins": [
+        "PDF Viewer/undefined",
+        "Chrome PDF Viewer/undefined",
+        "Chromium PDF Viewer/undefined"
+      ],
+      "mimeLen": 1,
+      "hardwareConcurrency": 14,
+      "deviceMemory": 32,
+      "connection": {
+        "effectiveType": "4g",
+        "downlink": 10,
+        "rtt": 0
+      },
+      "permissions": {
+        "state": "prompt"
+      },
+      "notificationPermission": "denied",
+      "chrome": {
+        "keys": [
+          "app",
+          "runtime",
+          "csi",
+          "loadTimes"
+        ]
+      },
+      "chromeRuntime": true,
+      "chromeApp": true,
+      "chromeCsi": true,
+      "chromeLoadTimes": true,
+      "chromeKeysDetail": [
+        "app",
+        "runtime",
+        "csi",
+        "loadTimes"
+      ],
+      "webgl": {
+        "vendor": "Google Inc. (Google)",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "shading": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+        "maxTexture": 8192,
+        "antialias": true,
+        "extensions": 35
+      },
+      "webgl2": {
+        "vendor": "Google Inc. (Google)",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      },
+      "screen": {
+        "width": 1280,
+        "height": 720,
+        "availWidth": 1280,
+        "availHeight": 720,
+        "colorDepth": 24,
+        "pixelDepth": 24,
+        "orientation": "landscape-primary",
+        "availLeft": 0,
+        "availTop": 0
+      },
+      "window": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "outerWidth": 1280,
+        "outerHeight": 720,
+        "screenX": 0,
+        "screenY": 0,
+        "screenLeft": 0,
+        "screenTop": 0,
+        "dpr": 1,
+        "scrollX": 0,
+        "scrollY": 0,
+        "visual": {
+          "width": 1280,
+          "height": 720,
+          "scale": 1
+        }
+      },
+      "timezone": "Asia/Shanghai",
+      "locale": "en-US",
+      "fonts": {
+        "sansI": 35.546875,
+        "sansM": 133.28125,
+        "serifI": 44.453125,
+        "monoI": 96.015625,
+        "monoM": 96.015625,
+        "emoji": 20,
+        "defaultDiffers": true
+      },
+      "notif": {
+        "perm": "denied",
+        "maxActions": 2
+      },
+      "media": {
+        "enumerate": "function"
+      },
+      "userActivation": {
+        "active": false,
+        "hasBeen": false
+      },
+      "idle": "function",
+      "documentHidden": {
+        "hidden": false,
+        "vis": "visible",
+        "focus": true
+      },
+      "documentAttrs": {},
+      "scan": {
+        "known": {},
+        "cdc": [],
+        "ownCount": 0,
+        "own": []
+      },
+      "protoLeaks": {
+        "windowKeys": 1245,
+        "functionToStringNative": true,
+        "getterStack": 6
+      },
+      "nowResolution": 0.09999999403953552,
+      "errorStack": "Error\n    at http://127.0.0.1:53198/:114:29\n    at safe (http://127.0.0.1:53198/:9:49)\n    at http://127.0.0.1:53198/:114:18",
+      "sameScreenViewport": true,
+      "outerEqualsScreen": true
+    },
+    "headers": {
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+      "sec-ch-ua": "\"HeadlessChrome\";v=\"159\", \"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"159\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    },
+    "events": [
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 213.69999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 214,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 214.30000001192093,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 214.40000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 214.80000001192093,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 214.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.19999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215.30000001192093,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.40000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215.59999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.69999998807907,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 215.80000001192093,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 215.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      }
+    ],
+    "trustedSummary": {
+      "pointermove": {
+        "total": 11,
+        "trusted": 11,
+        "untrusted": 0
+      },
+      "mousemove": {
+        "total": 11,
+        "trusted": 11,
+        "untrusted": 0
+      },
+      "pointerdown": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "mousedown": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "mouseup": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "click": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "keydown": {
+        "total": 7,
+        "trusted": 7,
+        "untrusted": 0
+      },
+      "keyup": {
+        "total": 7,
+        "trusted": 7,
+        "untrusted": 0
+      }
+    },
+    "logs": []
+  },
+  {
+    "mode": "headed-chromium",
+    "env": {
+      "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/159.0.0.0 Safari/537.36",
+      "uaData": {
+        "brands": [
+          {
+            "brand": "Chromium",
+            "version": "159"
+          },
+          {
+            "brand": "Not/A)Brand",
+            "version": "8"
+          }
+        ],
+        "mobile": false,
+        "platform": "macOS"
+      },
+      "language": "zh-CN",
+      "languages": [
+        "zh-CN",
+        "zh"
+      ],
+      "platform": "MacIntel",
+      "vendor": "Google Inc.",
+      "vendorSub": "",
+      "productSub": "20030107",
+      "webdriver": true,
+      "maxTouchPoints": 0,
+      "ontouchstart": false,
+      "touchEventCtor": "function",
+      "pluginsLen": 5,
+      "plugins": [
+        "PDF Viewer/internal-pdf-viewer",
+        "Chrome PDF Viewer/internal-pdf-viewer",
+        "Chromium PDF Viewer/internal-pdf-viewer",
+        "Microsoft Edge PDF Viewer/internal-pdf-viewer",
+        "WebKit built-in PDF/internal-pdf-viewer"
+      ],
+      "mimeLen": 2,
+      "hardwareConcurrency": 14,
+      "deviceMemory": 32,
+      "connection": {
+        "effectiveType": "4g",
+        "downlink": 1.75,
+        "rtt": 100
+      },
+      "permissions": {
+        "state": "prompt"
+      },
+      "notificationPermission": "default",
+      "chrome": {
+        "keys": [
+          "loadTimes",
+          "csi",
+          "app"
+        ]
+      },
+      "chromeRuntime": false,
+      "chromeApp": true,
+      "chromeCsi": true,
+      "chromeLoadTimes": true,
+      "chromeKeysDetail": [
+        "loadTimes",
+        "csi",
+        "app"
+      ],
+      "webgl": {
+        "vendor": "Google Inc. (Apple)",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "shading": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+        "maxTexture": 16384,
+        "antialias": true,
+        "extensions": 39
+      },
+      "webgl2": {
+        "vendor": "Google Inc. (Apple)",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+      },
+      "screen": {
+        "width": 1280,
+        "height": 720,
+        "availWidth": 1280,
+        "availHeight": 720,
+        "colorDepth": 24,
+        "pixelDepth": 24,
+        "orientation": "landscape-primary",
+        "availLeft": 0,
+        "availTop": 0
+      },
+      "window": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "outerWidth": 1282,
+        "outerHeight": 800,
+        "screenX": 22,
+        "screenY": 53,
+        "screenLeft": 22,
+        "screenTop": 53,
+        "dpr": 1,
+        "scrollX": 0,
+        "scrollY": 0,
+        "visual": {
+          "width": 1280,
+          "height": 720,
+          "scale": 1
+        }
+      },
+      "timezone": "Asia/Shanghai",
+      "locale": "zh-CN",
+      "fonts": {
+        "sansI": 40.959930419921875,
+        "sansM": 136.7999267578125,
+        "serifI": 43.199920654296875,
+        "monoI": 96.328125,
+        "monoM": 96.328125,
+        "emoji": 20,
+        "defaultDiffers": true
+      },
+      "notif": {
+        "perm": "default",
+        "maxActions": 2
+      },
+      "media": {
+        "enumerate": "function"
+      },
+      "userActivation": {
+        "active": false,
+        "hasBeen": false
+      },
+      "idle": "function",
+      "documentHidden": {
+        "hidden": false,
+        "vis": "visible",
+        "focus": true
+      },
+      "documentAttrs": {},
+      "scan": {
+        "known": {},
+        "cdc": [],
+        "ownCount": 0,
+        "own": []
+      },
+      "protoLeaks": {
+        "windowKeys": 1245,
+        "functionToStringNative": true,
+        "getterStack": 6
+      },
+      "nowResolution": 0.09999999403953552,
+      "errorStack": "Error\n    at http://127.0.0.1:53198/:114:29\n    at safe (http://127.0.0.1:53198/:9:49)\n    at http://127.0.0.1:53198/:114:18",
+      "sameScreenViewport": true,
+      "outerEqualsScreen": false
+    },
+    "headers": {
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/159.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"159\", \"Not/A)Brand\";v=\"8\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    },
+    "events": [
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 126.09999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 126.30000001192093,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 126.5,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 126.7000000178814,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 126.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 127,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 127.09999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 127.2000000178814,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 127.40000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 127.40000000596046,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 127.59999999403954,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 127.7000000178814,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keydown",
+        "isTrusted": true,
+        "ts": 127.80000001192093,
+        "pointerType": null,
+        "detail": 0
+      },
+      {
+        "type": "keyup",
+        "isTrusted": true,
+        "ts": 127.90000000596046,
+        "pointerType": null,
+        "detail": 0
+      }
+    ],
+    "trustedSummary": {
+      "pointermove": {
+        "total": 11,
+        "trusted": 11,
+        "untrusted": 0
+      },
+      "mousemove": {
+        "total": 11,
+        "trusted": 11,
+        "untrusted": 0
+      },
+      "pointerdown": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "mousedown": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "mouseup": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "click": {
+        "total": 1,
+        "trusted": 1,
+        "untrusted": 0
+      },
+      "keydown": {
+        "total": 7,
+        "trusted": 7,
+        "untrusted": 0
+      },
+      "keyup": {
+        "total": 7,
+        "trusted": 7,
+        "untrusted": 0
+      }
+    },
+    "logs": []
+  }
+]

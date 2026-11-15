@@ -1,0 +1,23 @@
+{
+  "name": "bot-detection",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node src/server/index.ts",
+    "test": "npm run build && node --test test/",
+    "probe": "node harness/probe.ts && node harness/probe2.ts",
+    "harness": "node harness/run.ts",
+    "bench": "node harness/bench.ts",
+    "ablate": "node harness/ablate.ts",
+    "perf": "node harness/perf.ts",
+    "verify": "npm run test && npm run harness && npm run bench && npm run ablate && npm run perf"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.25.0",
+    "playwright": "^1.65.1",
+    "typescript": "^5.9.0"
+  }
+}

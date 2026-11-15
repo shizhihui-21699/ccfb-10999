@@ -16,3 +16,14 @@ node_modules/
 __pycache__/
 .venv/
 venv/
+
+# harness build artifacts and generated data
+data/results/
+data/packets/
+harness/native/human_input
+dist/botshield.debug.js
+
+# native helper binaries (built from .swift by harness/native/build.sh)
+harness/native/act
+harness/native/permcheck
+harness/native/human_input

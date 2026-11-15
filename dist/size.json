@@ -1,0 +1,9 @@
+{
+  "minifiedBytes": 12090,
+  "minifiedKiB": 11.81,
+  "gzipBytes": 5208,
+  "gzipKiB": 5.09,
+  "unminifiedBytes": 23794,
+  "limitBytes": 20480,
+  "withinLimit": true
+}

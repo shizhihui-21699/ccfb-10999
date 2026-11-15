@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>probe2</title></head>
+<body>
+<div id="t" style="width:400px;height:300px;background:#ccc;touch-action:manipulation">tap here</div>
+<script>
+window.probe2 = (async () => {
+  const R = {};
+  const safe = (fn, d = null) => { try { return fn(); } catch (e) { return 'ERR:' + e.name; } };
+  const n = navigator;
+  R.media = {};
+  const qs = ['(pointer:fine)', '(pointer:coarse)', '(hover:hover)', '(hover:none)', '(any-pointer:coarse)', '(any-pointer:fine)', '(prefers-color-scheme:dark)', '(prefers-reduced-motion:reduce)', '(display-mode:standalone)', '(min-resolution:2dppx)', '(max-width:500px)', '(color-gamut:p3)', '(update:fast)', '(scripting:enabled)'];
+  for (const q of qs) R.media[q] = safe(() => matchMedia(q).matches);
+  R.uaData = safe(() => n.userAgentData ? { mobile: n.userAgentData.mobile, platform: n.userAgentData.platform, brands: n.userAgentData.brands } : null);
+  R.hev = await new Promise(res => {
+    if (!n.userAgentData || !n.userAgentData.getHighEntropyValues) return res(null);
+    n.userAgentData.getHighEntropyValues(['architecture', 'bitness', 'model', 'platformVersion', 'uaFullVersion', 'fullVersionList', 'wow64', 'formFactors']).then(v => res(v), e => res('ERR:' + e.name));
+  });
+  R.touch = {
+    maxTP: safe(() => n.maxTouchPoints),
+    onTouchStart: safe(() => 'ontouchstart' in window),
+    ctor: safe(() => typeof TouchEvent),
+    touchCtor: safe(() => typeof Touch),
+    pointerCtor: safe(() => typeof PointerEvent),
+    pointerCoarse: safe(() => matchMedia('(pointer:coarse)').matches),
+    hasTouchEventProto: safe(() => 'ontouchend' in document.documentElement),
+  };
+  R.notif = safe(() => ({ perm: Notification.permission, maxActions: Notification.maxActions }));
+  R.plugins = safe(() => Array.from(n.plugins).map(p => ({ name: p.name, filename: p.filename, len: p.length })));
+  R.mimes = safe(() => Array.from(n.mimeTypes).map(m => m.type));
+  R.chrome = safe(() => { const c = window.chrome; if (!c) return null; const o = {}; for (const k of Object.getOwnPropertyNames(c)) o[k] = typeof c[k]; return o; });
+  R.chromeRuntimeProps = safe(() => { const r = window.chrome && window.chrome.runtime; return r ? Object.getOwnPropertyNames(r) : null; });
+  R.chromeCsi = safe(() => { try { return JSON.stringify(window.chrome.csi()); } catch { return null; } });
+  R.webglParams = safe(() => {
+    const gl = document.createElement('canvas').getContext('webgl');
+    if (!gl) return null;
+    const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+    const read = p => gl.getParameter(p);
+    return {
+      vendor: dbg ? read(dbg.UNMASKED_VENDOR_WEBGL) : read(gl.VENDOR),
+      renderer: dbg ? read(dbg.UNMASKED_RENDERER_WEBGL) : read(gl.RENDERER),
+      maxVarying: read(gl.MAX_VARYING_VECTORS), maxVertexAttribs: read(gl.MAX_VERTEX_ATTRIBS),
+      maxCombinedTextures: read(gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS),
+      maxRenderbuffer: read(gl.MAX_RENDERBUFFER_SIZE),
+      maxViewportDims: read(gl.MAX_VIEWPORT_DIMS)?.join('x'),
+      aliasedLineWidthRange: read(gl.ALIASED_LINE_WIDTH_RANGE)?.join(','),
+      extensions: gl.getSupportedExtensions()?.length,
+      precision: gl.getShaderPrecisionFormat ? (f => f ? f.precision : null)(gl.getShaderPrecisionFormat(gl.VERTEX_SHADER, gl.HIGH_FLOAT)) : null,
+    };
+  });
+  R.webgl2 = safe(() => {
+    const gl = document.createElement('canvas').getContext('webgl2');
+    if (!gl) return null;
+    const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+    return { renderer: dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER), exts: gl.getSupportedExtensions()?.length };
+  });
+  R.audio = safe(() => {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    const c = new AC();
+    return { sampleRate: c.sampleRate, state: c.state, maxChannels: c.destination.maxChannelCount, baseLatency: c.baseLatency, outLatency: c.outputLatency };
+  });
+  R.fonts = safe(() => {
+    const c = document.createElement('canvas').getContext('2d');
+    const m = (f, t) => { c.font = f; return Math.round(c.measureText(t).width * 100) / 100; };
+    const base = { s: m('72px sans-serif', 'mmmmmmmmmmlli'), serif: m('72px serif', 'mmmmmmmmmmlli'), mono: m('72px monospace', 'mmmmmmmmmmlli') };
+    const cands = ['Arial', 'Helvetica', 'Helvetica Neue', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana', 'Trebuchet MS', 'Tahoma', 'Arial Black', 'Impact', 'Comic Sans MS', 'Palatino', 'Garamond', 'Bookman', 'PingFang SC', 'Heiti SC', 'Songti SC', 'Kaiti SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'SimSun', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'Menlo', 'Monaco', 'SF Pro Text', 'Segoe UI', 'Calibri', 'Cambria', 'Candara', 'Consolas', 'Lucida Console'];
+    const present = [];
+    for (const f of cands) {
+      if (m(`72px "${f}", sans-serif`, 'mmmmmmmmmmlli') !== base.s || m(`72px "${f}", serif`, 'mmmmmmmmmmlli') !== base.serif || m(`72px "${f}", monospace`, 'mmmmmmmmmmlli') !== base.mono) present.push(f);
+    }
+    return { base, present, count: present.length };
+  });
+  R.geo = { screenW: screen.width, screenH: screen.height, availW: screen.availWidth, availH: screen.availHeight, innerW: innerWidth, innerH: innerHeight, outerW: outerWidth, outerH: outerHeight, dpr: devicePixelRatio, sx: screenX, sy: screenY, availLeft: safe(() => screen.availLeft), availTop: safe(() => screen.availTop), vvScale: safe(() => visualViewport ? visualViewport.scale : null), vvW: safe(() => visualViewport ? visualViewport.width : null), vvH: safe(() => visualViewport ? visualViewport.height : null), orient: safe(() => screen.orientation && screen.orientation.type + '/' + screen.orientation.angle), colorDepth: screen.colorDepth, mediaDeviceCount: safe(() => 0) };
+  R.misc = {
+    webdriver: safe(() => n.webdriver),
+    langs: safe(() => n.languages),
+    lang: safe(() => n.language),
+    platform: safe(() => n.platform),
+    vendor: safe(() => n.vendor),
+    hc: safe(() => n.hardwareConcurrency),
+    dm: safe(() => n.deviceMemory),
+    conn: safe(() => n.connection ? { et: n.connection.effectiveType, dl: n.connection.downlink, rtt: n.connection.rtt, save: n.connection.saveData } : null),
+    battery: safe(() => typeof n.getBattery),
+    share: safe(() => typeof n.share),
+    vibrate: safe(() => typeof n.vibrate),
+    bluetooth: safe(() => typeof n.bluetooth),
+    usb: safe(() => typeof n.usb),
+    hid: safe(() => typeof n.hid),
+    serial: safe(() => typeof n.serial),
+    credentials: safe(() => typeof n.credentials),
+    storage: safe(() => typeof n.storage),
+    serviceWorker: safe(() => typeof n.serviceWorker),
+    pdfViewer: safe(() => typeof n.pdfViewerEnabled === 'boolean' ? n.pdfViewerEnabled : null),
+    pdfViewerEnabled: safe(() => n.pdfViewerEnabled),
+    webdriverDesc: safe(() => Object.getOwnPropertyDescriptor(Navigator.prototype, 'webdriver') ? 'proto' : 'none'),
+    pluginsDesc: safe(() => { const d = Object.getOwnPropertyDescriptor(Navigator.prototype, 'plugins'); return d ? { get: !!d.get, len: d.get && d.get.length } : null; }),
+    permsDesc: safe(() => { const d = Object.getOwnPropertyDescriptor(navigator.permissions, 'query'); return d ? (d.writable ? 'writable' : 'readonly') : null; }),
+    funcToString: safe(() => Function.prototype.toString.call(navigator.permissions.query).slice(0, 60)),
+    funcToStrPatched: safe(() => /\[native code\]/.test(Function.prototype.toString.call(navigator.permissions.query))),
+    screenXY: safe(() => ({ x: window.screenX, y: window.screenY })),
+    iframeFlag: safe(() => { try { const f = document.createElement('iframe'); f.style.display = 'none'; document.body.appendChild(f); const w = f.contentWindow; const r = w.navigator.webdriver; f.remove(); return r; } catch { return 'ERR'; } }),
+  };
+  R.timing = { now: performance.now(), timeOrigin: performance.timeOrigin, tzOffset: new Date().getTimezoneOffset(), tz: Intl.DateTimeFormat().resolvedOptions().timeZone, locale: Intl.DateTimeFormat().resolvedOptions().locale, cal: Intl.DateTimeFormat().resolvedOptions().calendar, num: Intl.DateTimeFormat().resolvedOptions().numberingSystem };
+
+  // touch/pointer event capture
+  const cap = { touchstart: 0, touchmove: 0, touchend: 0, pointerdown: 0, mousedown: 0, click: 0, pointerType: {} };
+  window.__cap = cap;
+  for (const t of ['touchstart', 'touchmove', 'touchend', 'pointerdown', 'mousedown', 'click']) {
+    window.addEventListener(t, e => {
+      cap[t]++;
+      if (e.pointerType) cap.pointerType[e.pointerType] = (cap.pointerType[e.pointerType] || 0) + 1;
+    }, { passive: true, capture: true });
+  }
+  return R;
+})();
+</script>
+</body>
+</html>
